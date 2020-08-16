@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "196616213011",
+    "firebase_url": "https://flash-chat-2868a.firebaseio.com",
+    "project_id": "flash-chat-2868a",
+    "storage_bucket": "flash-chat-2868a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196616213011:android:b860044770e264547965e6",
+        "android_client_info": {
+          "package_name": "com.ankansikdar.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196616213011-517b4oi65d3c1arqfkm4b1dat9m8vl6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlD9P6YbDEicqr7K0CeZKvg-13UVSkhy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196616213011-517b4oi65d3c1arqfkm4b1dat9m8vl6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
