@@ -103,7 +103,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         Alert(
                                 context: context,
                                 title: "Error",
-                            desc: "Cannot Send Empty Message!")
+                                desc: "Cannot Send Empty Message!")
                             .show();
                       }
                     },
@@ -129,9 +129,9 @@ class MessagesStream extends StatelessWidget {
       stream: _fireStore
           .collection('messages')
           .orderBy(
-        'time',
-        descending: false,
-      )
+            'time',
+            descending: false,
+          )
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
