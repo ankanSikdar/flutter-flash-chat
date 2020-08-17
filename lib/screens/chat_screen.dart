@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/components/message_bubble.dart';
@@ -79,12 +80,18 @@ class _ChatScreenState extends State<ChatScreen> {
                   FlatButton(
                     onPressed: () {
                       messageTextController.clear();
-                      if (message != null || message != '') {
+                      if (message != null && message != '') {
                         _fireStore.collection('messages').add({
                           'text': message,
                           'sender': loggedInUser.email,
                           'time': DateTime.now(),
                         });
+                      } else {
+                        Alert(
+                                context: context,
+                                title: "Error",
+                                desc: "Cannot Send Empty Message!")
+                            .show();
                       }
                     },
                     child: Text(
