@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:date_time_format/date_time_format.dart';
 
 class MessageBubble extends StatelessWidget {
   MessageBubble({this.sender, this.text, this.time, this.isMe});
@@ -51,7 +52,7 @@ class MessageBubble extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    '${time.hour}:${time.minute} ${time.day}/${time.month}',
+                    DateTimeFormat.format(time, format: 'D, M j, H:i'),
                     style: TextStyle(
                       fontSize: 10,
                       color: isMe ? Colors.white : Colors.black54,
