@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +10,8 @@ import 'package:flash_chat/components/message_bubble.dart';
 
 final _fireStore = Firestore.instance;
 FirebaseUser loggedInUser;
+
+ScrollController scrollController = ScrollController();
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -39,6 +43,14 @@ class _ChatScreenState extends State<ChatScreen> {
     } catch (e) {
       print(e);
     }
+  }
+
+  void scroll() {
+    scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      curve: Curves.easeIn,
+      duration: const Duration(seconds: 1),
+    );
   }
 
   @override
@@ -79,6 +91,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   FlatButton(
                     onPressed: () {
+                      scroll();
                       messageTextController.clear();
                       if (message != null && message != '') {
                         _fireStore.collection('messages').add({
@@ -90,7 +103,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         Alert(
                                 context: context,
                                 title: "Error",
-                                desc: "Cannot Send Empty Message!")
+                            desc: "Cannot Send Empty Message!")
                             .show();
                       }
                     },
@@ -116,9 +129,9 @@ class MessagesStream extends StatelessWidget {
       stream: _fireStore
           .collection('messages')
           .orderBy(
-            'time',
-            descending: false,
-          )
+        'time',
+        descending: false,
+      )
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
@@ -147,6 +160,7 @@ class MessagesStream extends StatelessWidget {
         }
         return Expanded(
           child: ListView(
+            controller: scrollController,
             padding: EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 20,
