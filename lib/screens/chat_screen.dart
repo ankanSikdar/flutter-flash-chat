@@ -127,10 +127,13 @@ class MessagesStream extends StatelessWidget {
           final text = message.data['text'];
           final sender = message.data['sender'];
           final currentUser = loggedInUser.email;
+          Timestamp timestamp = message.data['time'];
+          DateTime time = timestamp.toDate();
 
           MessageBubble messageBubble = MessageBubble(
             sender: sender,
             text: text,
+            time: time,
             isMe: currentUser == sender,
           );
           messageBubbles.add(messageBubble);

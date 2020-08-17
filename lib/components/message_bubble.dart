@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({this.sender, this.text, this.isMe});
+  MessageBubble({this.sender, this.text, this.time, this.isMe});
 
   final String sender;
   final String text;
+  final DateTime time;
   final bool isMe;
 
   @override
@@ -36,12 +37,27 @@ class MessageBubble extends StatelessWidget {
                 horizontal: 20,
                 vertical: 10,
               ),
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: isMe ? Colors.white : Colors.black54,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: isMe ? Colors.white : Colors.black54,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '${time.hour}:${time.minute} ${time.day}/${time.month}',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: isMe ? Colors.white : Colors.black54,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
